@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto_Tracking_Monitor-HOME</title>
+</head>
+<body>
+    <P>WELCOME TO CRYPTOCURRENCY MONITOR </P>
+    {% for p in portfolio %}
+        <p>{{p.name}}</p>
+        <p>{{p.symbol}}</p>
+        <p>{{p.price}}</p>
+    {% endfor %}
+</body>
+</html>

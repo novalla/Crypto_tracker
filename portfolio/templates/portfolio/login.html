@@ -1,0 +1,24 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Login</h1>
+        <div id="error-message" class="alert alert-danger {% if not error_message %}d-none{% endif %}" role="alert">
+            {{ error_message }}
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+   
+{% endblock %}
