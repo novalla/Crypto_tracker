@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto_Tracking_Monitor-DASHBOARD</title>
-</head>
-<body>
-    <P>WELCOME: {{ user }} DASHBOARD</P>
-    {% if cryptocurrencies %}
-      {% for crypto in cryptocurrencies %}
-        <p>{{ crypto.name }}</p>
-        <p>{{ crypto.symbol }}</p>
-        <p>{{ crypto.price }}</p>
-      {% endfor %}
-    {% else %}
-      <p>You haven't created a portfolio yet!</p>
-    {% endif %}
-  </body>
-</html>
+
+{% extends 'portfolio/base.html' %}
+{% block content %}
+  <h1 class="mt-5">WELCOME: {{ user }} DASHBOARD</h1>
+
+  {% if cryptocurrencies %}
+    <table class="table mt-3">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Symbol</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for crypto in cryptocurrencies %}
+          <tr>
+            <td>{{ crypto.name }}</td>
+            <td>{{ crypto.symbol }}</td>
+            <td>${{ crypto.price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+        You haven't added any cryptocurrencies to your portfolio yet!
+    </div>
+    <a href="{% url 'add-to-portfolio' %}">Add Cryptocurrencies to Portfolio</a>
+  {% endif %}
+{% endblock %}

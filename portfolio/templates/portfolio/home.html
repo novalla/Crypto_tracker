@@ -1,16 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto_Tracking_Monitor-HOME</title>
-</head>
-<body>
-    <P>WELCOME TO CRYPTOCURRENCY MONITOR </P>
-    {% for p in portfolio %}
-        <p>{{p.name}}</p>
-        <p>{{p.symbol}}</p>
-        <p>{{p.price}}</p>
-    {% endfor %}
-</body>
-</html>
+{% extends 'portfolio/base.html' %}
+{% block content %}
+  <h1 class="mt-5">WELCOME TO CRYPTOCURRENCY MONITOR</h1>
+
+  {% if portfolio %}
+    <table class="table mt-3">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Symbol</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in portfolio %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.symbol }}</td>
+            <td>${{ p.price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+        No cryptocurrencies found in the portfolio.
+    </div>
+  {% endif %}
+{% endblock %}
