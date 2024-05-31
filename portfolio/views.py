@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login as auth_login,logout
+from django.contrib.auth import authenticate, login as auth_login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import JsonResponse
 from django.db import IntegrityError
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
+
 
 
 
@@ -46,6 +49,11 @@ def register(request):
 
     
     return render(request, 'portfolio/registration.html')
+
+
+
+
+
 # @login_required
 # def dashboard(request):
 #     user = request.user.username

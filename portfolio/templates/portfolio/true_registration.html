@@ -1,0 +1,57 @@
+
+
+ 
+<!-- # start
+
+def register(request):
+    User = get_user_model()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)  # Use built-in UserCreationForm
+
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('login')  # Redirect to login page on success
+            except IntegrityError:
+                error_message = 'Username is already taken. Please choose a different username.'
+                return render(request, 'portfolio/registration.html', {'form': form, 'error_message': error_message})
+        else:
+            return render(request, 'portfolio/registration.html', {'form': form})  # Include form errors in context
+
+    else:
+        form = UserCreationForm()  # Create an empty form for initial display
+
+    return render(request, 'portfolio/registration.html', {'form': form})
+
+
+# end -->
+
+
+<!-- {% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Register</h1>
+    <div class="alert alert-danger {% if not error_message %}d-none{% endif %}" role="alert">
+        {{ error_message }}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control">
+                <span id="username-availability"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+            </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+{% endblock %} -->
